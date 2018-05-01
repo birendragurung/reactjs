@@ -40,15 +40,16 @@ export class App extends Component {
     render() {
         return (
             <div className="app">
-                {(this.props.location.pathname === "/")} ?
-                <SkiDayCount total={this.countDays()}
-                             powder={this.countDays("powder")}
-                             backcountry={this.countDays("backcountry")}
-                /> :
-                {(this.props.location.pathname === "/add-day")} ?
-                <AddDayForm /> :
-                <SkiDayList days={this.state.allSkiDays} />
+                {(this.props.location.path === "/") ?
+                    (<SkiDayCount total={this.countDays()}
+                                 powder={this.countDays("powder")}
+                                 backcountry={this.countDays("backcountry")}
+                    />) :
+                    (this.props.location.path === "/add-day") ?
+                        (<AddDayForm /> ):
+                        (<SkiDayList days={this.state.allSkiDays} />)
+                }
             </div>
-        );
+        )
     }
 }
